@@ -1,0 +1,62 @@
+.jiathis_button{
+	display: inline;
+}
+.jiathis_button.tsina{
+	background-position: 0px -144px;
+}
+.jiathis_button.renren{
+	background-position: 0px -240px;
+}
+.jiathis_button.weixin{
+	background-position: 0px -2712px;
+}
+.jiathis_button.tqq{
+	background-position: 0px -216px;
+}
+.jiathis_button{
+	background: url(jiathis_ico_24x24.png) no-repeat left;
+	height: 24px;
+	width: 24px;
+	display: inline-block;
+}
+.my-jiathis .share-text{
+	position: relative;
+	top: -5px;
+	font-size: 13px;
+}
+.jia-pull-right{
+	float: right;
+	display: inline;
+}
+
+.my-cre{
+    text-align: center;
+    padding: 10px;
+    margin-left: 600px;
+}
+.my-cre .share-text{
+	position: relative;
+	top: -5px;
+	font-size: 13px;
+}
+.cre_button{
+	display: inline;
+}
+.cre_button.tsina{
+	background-position: 0px -144px;
+}
+.cre_button.renren{
+	background-position: 0px -240px;
+}
+.cre_button.weixin{
+	background-position: 0px -2712px;
+}
+.cre_button.tqq{
+	background-position: 0px -216px;
+}
+.cre_button{
+	background: url(jiathis_ico_24x24.png) no-repeat left;
+	height: 24px;
+	width: 24px;
+	display: inline-block;
+}

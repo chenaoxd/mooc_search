@@ -1,0 +1,64 @@
+.form-group > div > a {
+  position: relative;
+  top: 8px;
+}
+.dz-form-edit label {
+  margin-left: 20px;
+  margin-right: 10px;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+html,
+body,
+#wrap {
+  height: 100%;
+}
+body > #wrap {
+  height: auto;
+  min-height: 100%;
+}
+.main-container {
+  width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 100px;
+}
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.clearfix {
+  display: inline-block;
+}
+* html .clearfix {
+  height: 1%;
+}
+.clearfix {
+  display: block;
+}
+footer#footer {
+  min-width: 980px;
+  border-top: #dadada 1px solid;
+  background-color: #f1f1f1;
+  height: 105px;
+  position: relative;
+  margin-top: -105px;
+  color: #c0c0c0;
+  clear: both;
+}
+footer#footer .level {
+  text-align: center;
+  font-size: 12px;
+  margin-top: 15px;
+}
+footer#footer .first-row {
+  padding-top: 0px;
+}
+footer#footer .third-row {
+  line-height: 17px;
+}

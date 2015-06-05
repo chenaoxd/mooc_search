@@ -1,0 +1,27 @@
+<form class="form-horizontal">
+  <div class="form-group">
+    <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2 control-label">url</label>
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+      <input type="text" class="form-control" ng-model="api_url" name="realname"/>
+    </div>
+  </div>
+  <div class="form-group" ng-repeat="param in param_list">
+    <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2 control-label">url</label>
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+      <input type="text" class="form-control" ng-model="param['key']" name="realname" placeholder="key"/>
+      <input type="text" class="form-control" ng-model="param['value']" name="realname" placeholder="value"/>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2 control-label"></label>
+    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+      <button class="btn btn-default" ng-click="add_param()">添加参数</button>
+      <button class="btn btn-default" ng-click="api_post()">post</button>
+      <button class="btn btn-default" ng-click="api_get()">get</button>
+      <button class="btn btn-default" ng-click="clean_param()">重置参数</button>
+    </div>
+  </div>
+</form>
+<pre>
+  [[response | json : object]]
+</pre>

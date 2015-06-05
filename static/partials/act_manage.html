@@ -1,0 +1,29 @@
+<div class="main">
+  <form class="form-horizontal">
+    <div class="form-group">
+      <label class="col-lg-2 control-label">活动ID</label>
+      <div class="col-lg-3">
+        <span disabled>[[act_info.act_id]]</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-2 control-label">活动名称</label>
+      <div class="col-lg-3">
+        <input type="text" class="form-control" ng-model="act_info.name"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-2 control-label">安全码</label>
+      <div class="col-lg-3">
+        <input type="text" class="form-control" ng-model="act_info.security_key"/>
+        <p class="help-block">用于验证您的管理员身份</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-2 control-label"></label>
+      <div class="col-lg-3">
+        <input type="submit" class="btn btn-default"/>
+      </div>
+    </div>
+  </form>
+</div>
