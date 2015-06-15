@@ -1,17 +1,31 @@
 <div class="ui menu grid purple inverted page fixed main">
-  <div class="item title">
-    Mooc Search
-  </div>
-  <div class="right item">
-    <div class="ui icon input">
-      <input type="text" placeholder="Search...">
-      <i class="search link icon"></i>
+  <div class="main-width">
+    <div class="item title">
+      Billingual Mooc Search
+    </div>
+    <div class="item">
+      <form class="ui icon input" ng-submit="search_course()">
+        <input type="text" placeholder="Search..." ng-model="query" select-on-click>
+        <i class="search link icon" ng-click="search_course()"></i>
+        <input type="submit" class="search-submit"/>
+      </form>
     </div>
   </div>
 </div>
 
 <div class="ui grid page">
-  <div class="column clearfix" id="main-container">
-    <button>ok</button>
+  <div class="column clearfix main-container">
+    
+    <div class="course-info" ng-repeat="course_info in course_list">
+      <a ng-href="[[course_info['_source']['intro_url'] ]]" target="_blank">
+        <div class="img"><img ng-src="[[course_info['_source']['img_url'] ]]"/></div>
+        <div class="intro">
+          <div class="name">[[course_info['_source']['name'] ]]</div>
+          <div class="source">[[course_info['_source']['platform'] ]] - [[course_info['_source']['school'] ]]</div>
+          <div class="description">[[course_info['_source']['description'] | cut:false:500]]</div>
+        </div>
+      </a>
+    </div>
+    
   </div>
 </div>

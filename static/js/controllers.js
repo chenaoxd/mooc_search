@@ -3,26 +3,19 @@
 /* Controllers */
 
 angular.module('aips.controllers', []).
-    controller('HomepageCtrl', ['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
+    controller('HomepageCtrl', ['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService',  '$anchorScroll', function($scope, $http, $csrf, urls, $filter, $routeParams, $user, $anchorScroll){
         console.log('HomepageCtrl');
-        $scope.act_name = '我的活动报名';
-        $scope.dropdown_model = 'test';
-        /**
-         $scope.phonenum = '';
-         $scope.step = 0;
-         **/
-        $scope.create_act = function(){
+        $scope.search_course = function(){
             var param = {
-                'name': $scope.act_name
+                query: $scope.query
             };
-            $csrf.set_csrf(param);
-            $http.post(urls.api + '/act/create', $.param(param)).success(function(data, status){
+            $http.get(urls.api + '/search_course?' + $.param(param)).success(function(data){
                 console.log(data);
-                if(data.error.code == 1){
-                    window.location.href = '/act/' + data.act_id + '/manage';
-                }
+                $scope.course_list = data.courses;
+                $anchorScroll(0);
             });
         };
+        $scope.search_course();
     }]).
     controller('ActivityManageCtrl', ['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('ActivityManageCtrl');

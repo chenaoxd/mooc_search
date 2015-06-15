@@ -10,5 +10,6 @@ urlpatterns = patterns(
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^api/search_course$', 'app.views.search_course'),
     url(r'^.*$', 'app.views.index'),
 )

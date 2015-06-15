@@ -3,14 +3,19 @@ html, body, #wrap { height: 100%; }
 body >#wrap{
     height: auto;
     min-height: 100%;
+    background-color: #eeeeee;
+}
+.main-width{
+    min-width: 1200px;
 }
 .main-container{
-    //min-height: 720px;
+    min-width: 1200px;
     margin-left: auto;
     margin-right: auto;
     padding-bottom: 100px;
 }
-.clearfix:after {content: ".";
+.clearfix:after {
+    content: ".";
     display: block;
     height: 0;
     clear: both;
@@ -21,7 +26,7 @@ body >#wrap{
 }
 * html .clearfix {
     height: 1%;
- }
+}
 .clearfix {
     display: block;
 }

@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title ng-bind="'Aips | ' + $root.title">Mooc search | Homepage</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="/static/css/base.css"/>
     <link rel="stylesheet" href="/static/lib/semantic/css/semantic.min.css"/>
     <link rel="stylesheet" href="/static/lib/bootstrap/bootstrap.min.css"/>
@@ -23,7 +24,9 @@
   </head>
   <body style="margin: 0px;">
 
-    <div ng-view autoscroll="true" id="wrap">
+    <div class="wrap">
+      <div ng-view autoscroll="true">
+      </div>
     </div>
 	{% include "footer.html" %}
 
