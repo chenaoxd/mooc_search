@@ -5,15 +5,12 @@ import pymongo
 import threading
 import time
 from models import CourseInfo
-from lxml.cssselect import CSSSelector
-from lxml.etree import fromstring
 from bs4 import BeautifulSoup
 
 client = pymongo.MongoClient('mongodb://localhost:27017')
 db = client['mooc_search']
 course_col = db['courses']
 
-course_str = open('algs4partI.txt').read()
 coursera_course_list_str = open('coursera_course_list.txt').read()
 xuetangx_course_list_str = open('xuetangx_course_list.txt').read()
 edx_course_list_str = open('edx_course_list.txt').read()
@@ -115,9 +112,25 @@ def get_xuetangx_course_detail(course_info):
         
     return course_info
 
-def dump_edx_courses(course):
+def dump_edx_course(course):
     course_info = get_edx_course_detail(course)
     ci = CourseInfo(course_info, 'edx')
+    ci.save()
+
+def dump_coursera_course(course):
+    try:
+        course_info = json.loads(get_method(coursera_course_detail_url(urllib.quote_plus(course['slug']))))
+    except:
+        print course['slug'], 'insert failed...'
+        return 
+
+    ci = CourseInfo(course_info, 'coursera')
+    ci.save()
+    print course['slug'], 'inserted...'
+
+def dump_xuetangx_course(course):
+    course_info = get_xuetangx_course_detail(course)
+    ci = CourseInfo(course_info, 'xuetangx')
     ci.save()
 
 if __name__ == '__main__2':
@@ -129,30 +142,27 @@ if __name__ == '__main__2':
 
     counter = 0
     for course in json.loads(coursera_course_list_str):
-        counter += 1
+        while threading.active_count() >= 100:
+            print 'sleeping'
+            time.sleep(3)
+        t = threading.Thread(target=dump_coursera_course, args=(course,))
+        t.start()
+        
         if counter % 20 == 0:
             print counter
-        if course_col.find_one({'_id': 'coursera_' + course['slug']}):
-            print course['slug'], 'exist...'
-            continue
+        counter += 1
             
-        try:
-            course_info = json.loads(get_method(coursera_course_detail_url(urllib.quote_plus(course['slug']))))
-        except:
-            print course['slug'], 'insert failed...'
-            continue
 
-        ci = CourseInfo(course_info, 'coursera')
-        ci.save()
-        print course['slug'], 'inserted...'
-
-if __name__ == '__main__2':
+if __name__ == '__main__':
     print __file__, 'running...'
     counter = 0
     for course in json.loads(xuetangx_course_list_str):
-        course_info = get_xuetangx_course_detail(course)
-        ci = CourseInfo(course_info, 'xuetangx')
-        ci.save()
+        while threading.active_count() >= 100:
+            print 'sleeping'
+            time.sleep(3)
+        t = threading.Thread(target=dump_xuetangx_course, args=(course,))
+        t.start()
+        
         if counter % 20 == 0:
             print counter
         counter += 1
@@ -166,13 +176,13 @@ if __name__ == '__main__2':
 if __name__ == '__main__2':
     dump_edx_course_list()
 
-if __name__ == '__main__':
+if __name__ == '__main__2':
     counter = 0
     for course in json.loads(edx_course_list_str):
         while threading.active_count() >= 100:
             print 'sleeping'
             time.sleep(3)
-        t = threading.Thread(target=dump_edx_courses, args=(course,))
+        t = threading.Thread(target=dump_edx_course, args=(course,))
         t.start()
 
         if counter % 30 == 0:

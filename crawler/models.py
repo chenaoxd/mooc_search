@@ -36,16 +36,16 @@ class CourseInfo():
             try:
                 self.img_url = c_obj['elements'][0]['photoUrl']
             except:
-                print c_obj['elements'][0]
+                self.img_url = ''
             self.intro_url = course_intro_prefix + c_obj['elements'][0]['slug']
             self.platform = platform
             self.categories = c_obj['elements'][0]['categories']
-            self.category_names = c_obj['linked']['categories.v1']
+            self.category_names = [a['name'] for a in c_obj['linked']['categories.v1']]
             self.school = [p['name'] for p in c_obj['linked']['partners.v1']]
             try:
                 self.start_time = '-'.join([expand_date(d) for d in [c_obj['linked']['v1Sessions.v1'][0]['startYear'], c_obj['linked']['v1Sessions.v1'][0]['startMonth'], c_obj['linked']['v1Sessions.v1'][0]['startDay']]])
             except:
-                print c_obj['linked'], '------------------'
+                self.start_time = ''
             self.description = c_obj['elements'][0]['description']
             self.about = c_obj['linked']['v1Details.v1'][0]['aboutTheCourse']
             self.faq = c_obj['linked']['v1Details.v1'][0]['faq']
@@ -65,17 +65,18 @@ class CourseInfo():
             try:
                 self.start_time = c_obj['start_time']
             except:
-                ''
+                self.start_time = ''
             self.description = c_obj['subtitle']
             self.about = c_obj['about']
             try:
                 self.faq = c_obj['faq']
             except:
-                ''
+                self.faq = ''
             try:
                 self.syllabus = c_obj['syllabus']
             except:
-                ''
+                self.syllabus = ''
+                
         elif platform == 'edx':
             edx_intro_prefix = 'http://www.edx.org'
             self._id = platform + '_' + c_obj['course_id']
