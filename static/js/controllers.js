@@ -5,6 +5,7 @@
 angular.module('aips.controllers', []).
     controller('HomepageCtrl', ['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService',  '$anchorScroll', function($scope, $http, $csrf, urls, $filter, $routeParams, $user, $anchorScroll){
         console.log('HomepageCtrl');
+        $scope.query = '信息检索';
         $scope.search_course = function(){
             var param = {
                 query: $scope.query
