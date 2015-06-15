@@ -133,7 +133,7 @@ def dump_xuetangx_course(course):
     ci = CourseInfo(course_info, 'xuetangx')
     ci.save()
 
-if __name__ == '__main__2':
+if __name__ == '__main__':
     print __file__, 'running...'
     #print get_method(coursera_course_list_url([]))
     #convert_str2course(course_str)
@@ -176,7 +176,7 @@ if __name__ == '__main__2':
 if __name__ == '__main__2':
     dump_edx_course_list()
 
-if __name__ == '__main__2':
+if __name__ == '__main__':
     counter = 0
     for course in json.loads(edx_course_list_str):
         while threading.active_count() >= 100:

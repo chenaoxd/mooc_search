@@ -41,7 +41,7 @@ class CourseInfo():
             self.platform = platform
             self.categories = c_obj['elements'][0]['categories']
             self.category_names = [a['name'] for a in c_obj['linked']['categories.v1']]
-            self.school = [p['name'] for p in c_obj['linked']['partners.v1']]
+            self.school = [p['name'] for p in c_obj['linked']['partners.v1']][0]
             try:
                 self.start_time = '-'.join([expand_date(d) for d in [c_obj['linked']['v1Sessions.v1'][0]['startYear'], c_obj['linked']['v1Sessions.v1'][0]['startMonth'], c_obj['linked']['v1Sessions.v1'][0]['startDay']]])
             except:
@@ -57,6 +57,8 @@ class CourseInfo():
             self._id = platform + '_' + c_obj['href'][9:-6]
             self.name = c_obj['name']
             self.img_url = c_obj['thumbnail']
+            if self.img_url.startswith('/'):
+                self.img_url = 'http://www.xuetangx.com' + self.img_url
             self.intro_url = xuetangx_intro_prefix + c_obj['href']
             self.platform = platform
             self.categories = c_obj['categories']

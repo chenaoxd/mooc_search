@@ -91,6 +91,7 @@ def search_course(request):
             if r['_source']['img_url'].startswith('/'):
                 if r['_source']['platform'] == 'xuetangx':
                     r['_source']['img_url'] = 'http://www.xuetangx.com' + r['_source']['img_url']
+                    
             r['_source']['name'] = BeautifulSoup(r['_source']['name']).get_text()
     res['courses'] = final_results
     res['error'] = error(1, 'ok')
