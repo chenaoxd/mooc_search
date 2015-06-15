@@ -8,3 +8,4 @@ db.sqlite3
 .sass-cache/*
 node_modules/*
 *.old
+*.txt
