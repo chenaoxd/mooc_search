@@ -25,7 +25,7 @@ def remove_course_tags(course):
 
 if __name__ == '__main__':
     print __file__, 'running..'
-    for course in course_col.find():
+    for course in course_col.find(timeout=False):
         course = remove_course_tags(course)
         #print course
         r = requests.request('post', 'http://127.0.0.1:9200/mooc-courses/%s/%s' % (course['platform'], urllib.quote_plus(course['_id'])), data=json.dumps(course, ensure_ascii=False).encode('utf-8'))

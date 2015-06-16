@@ -60,7 +60,7 @@ def search_course(request):
     res = {}
     query = request.GET.get('query', '')
     if not query:
-        query = '信息检索'
+        query = '自然语言处理'
     res['query'] = query
     result_set = set()
     
