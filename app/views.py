@@ -85,12 +85,6 @@ def search_course(request):
     for r in search_results:
         if r['_source']['img_url']:
             final_results.append(r)
-            
-            if type(r['_source']['school']) == type([]):
-                r['_source']['school'] = r['_source']['school'][0]
-            if r['_source']['img_url'].startswith('/'):
-                if r['_source']['platform'] == 'xuetangx':
-                    r['_source']['img_url'] = 'http://www.xuetangx.com' + r['_source']['img_url']
                     
             r['_source']['name'] = BeautifulSoup(r['_source']['name']).get_text()
     res['courses'] = final_results
