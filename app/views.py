@@ -71,14 +71,20 @@ def search_course(request):
     else:
         translations = translate_query(query)
         response = json.loads(requests.request('get', 'http://127.0.0.1:9200/mooc-courses/_search?q=%s' % urllib.quote_plus(query.encode('utf-8'))).text)
-        search_results = response['hits']['hits']
+        try:
+            search_results = response['hits']['hits']
+        except:
+            sreach_results = []
         result_set.update([a['_id'] for a in search_results])
 
         for trans_tu in translations:
             trans = trans_tu[0]
             #print trans
             response = json.loads(requests.request('get', 'http://127.0.0.1:9200/mooc-courses/_search?q=%s' % urllib.quote_plus(trans.encode('utf-8'))).text)
-            trans_search_results = response['hits']['hits']
+            try:
+                trans_search_results = response['hits']['hits']
+            except:
+                continue
             search_results = merge_results(search_results, trans_search_results, trans_tu[1])
 
     final_results = []
