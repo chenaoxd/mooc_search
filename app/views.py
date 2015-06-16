@@ -41,7 +41,7 @@ def translate_query(query):
         a = a.lower()
         if a not in translation_set:
             translations.append((a, weight))
-        weight *= 0.5
+        weight *= 0.4
     return translations
 
 def search_course(request):

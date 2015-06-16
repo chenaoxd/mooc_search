@@ -16,7 +16,7 @@
 <div class="ui grid page">
   <div class="column clearfix main-container">
     
-    <div class="course-info" ng-repeat="course_info in course_list">
+    <div class="course-info" ng-repeat="course_info in course_list" ng-if="course_info._score > 0.16">
       <a ng-href="[[course_info['_source']['intro_url'] ]]" target="_blank">
         <div class="img"><img ng-src="[[course_info['_source']['img_url'] ]]"/></div>
         <div class="intro">
